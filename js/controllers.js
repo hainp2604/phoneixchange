@@ -5,8 +5,9 @@
 
 function currencyCrtl($scope,openExchangeRates) {
 
-  $scope.balances =  new Array;
-  $scope.exchangeRates = openExchangeRates.getRates();
+  $scope.balances = new Array;
+  $scope.rates = new Object;
+  $scope.exchangeRates  = openExchangeRates.getRates();
   $scope.currencyLegend = openExchangeRates.getLegend();
 
   $scope.addBalance = function() {
@@ -42,53 +43,39 @@ function currencyCrtl($scope,openExchangeRates) {
       var value = $scope.convertToNumber($scope.balances[m].amount);
       var exchangeRate = $scope.balances[m].exchangeRate;
       if (value != 0 && exchangeRate != '') {
-        //total = total + value;
-        total = total + $scope.convertCurrencyValueToBaseValue(value,exchangeRate);
+        total = total + value;
+        //total = total + $scope.convertCurrencyValueToBaseValue(value,exchangeRate);
       }
     }
     
     return total;
   }
 
- 
-  
-
-
-
   $scope.convertToNumber = function(value) {
     
     var floatNumber = parseFloat(value);
-
-    if (floatNumber) {
-
-      return floatNumber;
-
-    } else {
-
-      return 0;
-
-    }
+    return floatNumber ? floatNumber : 0;
 
   }
 
   $scope.roundDown = function(number) {
-    
-    return Math.round(number*100)/100;
-    //return Math.round(number);
+
+    return Math.round(number*100) / 100;
 
   }
 
   $scope.convertCurrencyValueToBaseValue = function(currencyValue,exchangeRate) {
-
+ 
     var baseValue = currencyValue / exchangeRate;
     return baseValue;
-
+ 
   }
 
   $scope.convertBaseValueToCurrencyValue = function(baseValue,exchangeRate) {
-    // not in use yet
-    var currencyValue = baseValue * exchangeRate;
+
+    var currencyValue = baseValue ? baseValue * exchangeRate : 0;
     return currencyValue;
+
   }
 
   $scope.ageOfExchangeRate = function() {
@@ -114,11 +101,7 @@ function currencyCrtl($scope,openExchangeRates) {
     
   }
 
-  // populate form on load with two empty fields
+  // populate form on load with one empty fields
   $scope.addBalance();
-  $scope.addBalance();
-
-
-  Socialite.load('social-buttons');
 
 }
