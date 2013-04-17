@@ -2,13 +2,20 @@
 <html lang="en" ng-app="myApp">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Simply Do - Currencies</title>
   <link rel="stylesheet" href="css/default.css"/>
+  <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css"/>
+  <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/responsive.css">
+
+  <style type="text/css">
+    ul {margin: 0;}
+    li {list-style: none;}
+  </style>
 
 </head>
 <body ng-controller="currencyCrtl">
-  <div id="simplyDoBanner">Currencies is a <a href="http://simplydo.com" target="new">Simply Do</a> project.</div>
-  <div id="top">
+  <!--div id="top">
     <div class="container">
       <div class="row">
         <div class="span12">
@@ -22,29 +29,37 @@
         </div>
       </div>
     </div>
-  </div>
+  </div-->
 
   <div class="container">
     <div class="row">
       <div class="span6">
+        <h2>Convert to</h2>
+        <select class="span3" ng-model='rates' ng-options="symbol for (symbol, rate) in exchangeRates.rates">
+          <option value="">Select currency...</option>
+        </select>
+        <div>{{roundDown(convertBaseValueToCurrencyValue(totalBalance(),rates))}}</div>
+      </div>
 
+      <div class="span6">
         <h2>Enter the amount(s) you want to convert</h2>
-        <ul>
-          <li ng-repeat="balance in balances">
-            <input type="text" ng-model="balance.amount" placeholder="Amount..." class="span2"/>
-            <select class="span3" ng-model='balance.exchangeRate' ng-options="getCurrencyNameFull(symbol) for (symbol, rate) in exchangeRates.rates">
-              <option value="">Select currency...</option>
-            </select>
-            <a class="" ng-click="removeBalance($index);"><i class="icon-remove"></i></a>
-          </li>
-        </ul>
         <p>
           <button class="btn btn-primary" ng-click="addBalance();"><i class="icon-plus icon-white"></i> Add another</button>
         </p>
+        <ul>
+          <li ng-repeat="balance in balances">
+            <input type="text" ng-model="balance.amount" placeholder="Amount..." class="span2"/>
+            <select class="span3" ng-model='balance.exchangeRate' ng-options="symbol for (symbol, rate) in exchangeRates.rates">
+              <option value="">Select currency...</option>
+            </select>
+            <a class="" ng-click="removeBalance($index);"><span class="icon-remove"></span></a>
+          </li>
+        </ul>
+
         <p class="note">Exchange Rates were last updated {{ageOfExchangeRate()}} ago.<br />Data powered by <a href="http://openexchangerates.org/" target="new">open exchange rates</a>.<br />See terms and disclaimer below.</p>
 
       </div>
-      <div class="span6">
+      <!--div class="span6">
         <h2>Your total in pretty much every currency</h2>
         <table class="table table-striped"> 
           <tr ng-repeat="(currency, rate) in exchangeRates.rates">
@@ -54,7 +69,7 @@
           </tr>
         </table>
 
-      </div>
+      </div-->
     </div>
   </div>
 
@@ -63,17 +78,9 @@
         <div class="row">
           <div class="span3">
             <ul class="unstyled">
-              <li>© 2012 <a href="http://simplydo.com" target="new">Simply Do</a>, LLC.<br />All Rights Reserved.</li>
-            </ul>
-          </div>
-          <div class="span3">
-            <ul class="unstyled">
-              <li>The source code is open and <a href="https://github.com/SimplyDo/currencies" target="new">available on Github</a></li>
-              <li>Created with <a href="http://angularjs.org/" target="new">AngularJS</a> by Google</li>
-              <li>The UI is <a href="http://twitter.github.com/bootstrap/" target="new">Twitter Bootstrapped</a></li>
-              <li>Social buttons by <a href="http://socialitejs.com/" target="new">Socialite.js</a></li>
-              <li>Hosted with <a href="http://pages.github.com/" target="new">Github pages</a></li>
-
+              <li>Originated by <a href="http://simplydo.com" target="new">Simply Do</a>, LLC. </li>
+              <li>Modified by Nguyen Phan Hai (@hai_np)</li>
+              <li>Published under GPL v3</li>
             </ul>
           </div>
           <div class="span6">
@@ -102,7 +109,7 @@
   <script src="js/filters.js"></script>
   <script src="js/directives.js"></script>
   
-  <script type="text/javascript">
+  <!--script type="text/javascript">
 
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-29523960-1']);
@@ -114,7 +121,7 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 
-</script>
+</script-->
 
 
 </body>
