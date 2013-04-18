@@ -1,0 +1,14 @@
+{
+  "version": "0.0.1",
+  "name": "Phoneixchange",
+  "description": "Not available",
+  "launch_path": "/currencies",
+  "icons": {
+    "128": "/weatherme/icon-128.png"
+  },
+  "developer": {
+    "name": "Your Name",
+    "url": "http://yourawesomeapp.com"
+  },
+  "installs_allowed_from": ["*"]
+}
