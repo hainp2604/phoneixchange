@@ -5,9 +5,8 @@ A currency converter (based on [Simply Do Currencies](http://simplydo.com/curren
 ## Libraries / frameworks
 Uses various libraries / frameworks under their respective licenses: 
 
-AngularJS by Google - http://angularjs.org/
-
-Twitter Bootstrapped - http://twitter.github.com/bootstrap/
+* AngularJS by Google - http://angularjs.org/
+* Twitter Bootstrapped - http://twitter.github.com/bootstrap/
 
 Exchange rates powered by Openexchangerates:
 

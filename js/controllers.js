@@ -43,8 +43,7 @@ function currencyCrtl($scope,openExchangeRates) {
       var value = $scope.convertToNumber($scope.balances[m].amount);
       var exchangeRate = $scope.balances[m].exchangeRate;
       if (value != 0 && exchangeRate != '') {
-        total = total + value;
-        //total = total + $scope.convertCurrencyValueToBaseValue(value,exchangeRate);
+        total = total + $scope.convertCurrencyValueToBaseValue(value,exchangeRate);
       }
     }
     
@@ -73,7 +72,7 @@ function currencyCrtl($scope,openExchangeRates) {
 
   $scope.convertBaseValueToCurrencyValue = function(baseValue,exchangeRate) {
 
-    var currencyValue = baseValue ? baseValue * exchangeRate : 0;
+    var currencyValue = (baseValue || exchangeRate) ? baseValue * exchangeRate : 0;
     return currencyValue;
 
   }
