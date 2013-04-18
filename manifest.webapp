@@ -4,11 +4,11 @@
   "description": "Not available",
   "launch_path": "/currencies",
   "icons": {
-    "128": "/weatherme/icon-128.png"
+    "128": "/currencies/img/coin-search.png"
   },
   "developer": {
-    "name": "Your Name",
-    "url": "http://yourawesomeapp.com"
+    "name": "Nguyễn Phan Hải",
+    "url": "http://localhost:8800/"
   },
   "installs_allowed_from": ["*"]
 }
