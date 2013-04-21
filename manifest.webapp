@@ -2,9 +2,9 @@
   "version": "0.0.1",
   "name": "Phoneixchange",
   "description": "Not available",
-  "launch_path": "/currencies",
+  "launch_path": "/index.html",
   "icons": {
-    "128": "/currencies/img/coin-search.png"
+    "128": "/img/coin-search.png"
   },
   "developer": {
     "name": "Nguyễn Phan Hải",

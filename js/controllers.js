@@ -29,7 +29,7 @@ function currencyCrtl($scope,openExchangeRates) {
 
   $scope.getCurrencyNameFull= function(symbol) {
     if ($scope.currencyLegend) {
-      return $scope.currencyLegend[symbol]+' ('+symbol+')';
+      return symbol+' - '+$scope.currencyLegend[symbol];
     } else {
       return false;
     }
@@ -43,7 +43,7 @@ function currencyCrtl($scope,openExchangeRates) {
       var value = $scope.convertToNumber($scope.balances[m].amount);
       var exchangeRate = $scope.balances[m].exchangeRate;
       if (value != 0 && exchangeRate != '') {
-        total = total + $scope.convertCurrencyValueToBaseValue(value,exchangeRate);
+        total = total + $scope.toBaseValue(value,exchangeRate);
       }
     }
     
@@ -63,17 +63,20 @@ function currencyCrtl($scope,openExchangeRates) {
 
   }
 
-  $scope.convertCurrencyValueToBaseValue = function(currencyValue,exchangeRate) {
+  $scope.toBaseValue = function(currencyValue,exchangeRate) {
  
     var baseValue = currencyValue / exchangeRate;
+
     return baseValue;
  
   }
 
-  $scope.convertBaseValueToCurrencyValue = function(baseValue,exchangeRate) {
+  $scope.toCurrencyValue = function(baseValue,exchangeRate) {
 
+    //TODO refactoring
     var currencyValue = (baseValue || exchangeRate) ? baseValue * exchangeRate : 0;
-    return currencyValue;
+
+    return currencyValue ? currencyValue : 0;
 
   }
 
